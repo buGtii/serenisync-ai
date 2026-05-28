@@ -52,9 +52,9 @@ function Disorder() {
 
       {d.duration_requirement && <Section title="Duration">{d.duration_requirement}</Section>}
       {d.functional_impairment && <Section title="Functional impairment">{d.functional_impairment}</Section>}
-      {d.differential_diagnoses?.length > 0 && <Section title="Differential diagnoses"><Pills items={d.differential_diagnoses} /></Section>}
-      {d.comorbidities?.length > 0 && <Section title="Common comorbidities"><Pills items={d.comorbidities} /></Section>}
-      {d.risk_factors?.length > 0 && <Section title="Risk factors"><Pills items={d.risk_factors} /></Section>}
+      {(d.differential_diagnoses?.length ?? 0) > 0 && <Section title="Differential diagnoses"><Pills items={d.differential_diagnoses ?? []} /></Section>}
+      {(d.comorbidities?.length ?? 0) > 0 && <Section title="Common comorbidities"><Pills items={d.comorbidities ?? []} /></Section>}
+      {(d.risk_factors?.length ?? 0) > 0 && <Section title="Risk factors"><Pills items={d.risk_factors ?? []} /></Section>}
       {d.developmental_considerations && <Section title="Developmental considerations">{d.developmental_considerations}</Section>}
       {d.cultural_considerations && <Section title="Cultural considerations">{d.cultural_considerations}</Section>}
       {data.tools.length > 0 && (
