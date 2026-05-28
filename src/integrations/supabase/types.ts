@@ -328,6 +328,57 @@ export type Database = {
           },
         ]
       }
+      dsm_quiz_questions: {
+        Row: {
+          chapter_id: string
+          choices: Json
+          correct_key: string
+          created_at: string
+          difficulty: number
+          disorder_id: string | null
+          explanation: string | null
+          id: string
+          question: string
+        }
+        Insert: {
+          chapter_id: string
+          choices: Json
+          correct_key: string
+          created_at?: string
+          difficulty?: number
+          disorder_id?: string | null
+          explanation?: string | null
+          id?: string
+          question: string
+        }
+        Update: {
+          chapter_id?: string
+          choices?: Json
+          correct_key?: string
+          created_at?: string
+          difficulty?: number
+          disorder_id?: string | null
+          explanation?: string | null
+          id?: string
+          question?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dsm_quiz_questions_chapter_id_fkey"
+            columns: ["chapter_id"]
+            isOneToOne: false
+            referencedRelation: "dsm_chapters"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dsm_quiz_questions_disorder_id_fkey"
+            columns: ["disorder_id"]
+            isOneToOne: false
+            referencedRelation: "dsm_disorders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       dsm_specifiers: {
         Row: {
           description: string | null
