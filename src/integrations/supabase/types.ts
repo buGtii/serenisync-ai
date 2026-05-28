@@ -440,6 +440,7 @@ export type Database = {
         Row: {
           chapter_id: string
           comorbidities: string[] | null
+          course: string | null
           created_at: string
           cultural_considerations: string | null
           developmental_considerations: string | null
@@ -454,12 +455,16 @@ export type Database = {
           is_seeded: boolean
           name: string
           overview: string
+          prevalence: string | null
           risk_factors: string[] | null
           slug: string
+          symptoms: string[] | null
+          treatment_overview: string | null
         }
         Insert: {
           chapter_id: string
           comorbidities?: string[] | null
+          course?: string | null
           created_at?: string
           cultural_considerations?: string | null
           developmental_considerations?: string | null
@@ -474,12 +479,16 @@ export type Database = {
           is_seeded?: boolean
           name: string
           overview: string
+          prevalence?: string | null
           risk_factors?: string[] | null
           slug: string
+          symptoms?: string[] | null
+          treatment_overview?: string | null
         }
         Update: {
           chapter_id?: string
           comorbidities?: string[] | null
+          course?: string | null
           created_at?: string
           cultural_considerations?: string | null
           developmental_considerations?: string | null
@@ -494,8 +503,11 @@ export type Database = {
           is_seeded?: boolean
           name?: string
           overview?: string
+          prevalence?: string | null
           risk_factors?: string[] | null
           slug?: string
+          symptoms?: string[] | null
+          treatment_overview?: string | null
         }
         Relationships: [
           {
