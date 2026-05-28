@@ -41,9 +41,12 @@ function Page() {
 
   return (
     <div className="container max-w-5xl mx-auto px-6 py-10">
-      <Link to="/clinician" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground">
-        <ArrowLeft className="h-4 w-4 mr-1" /> Back to roster
-      </Link>
+      <div className="flex items-center justify-between print:hidden">
+        <Link to="/clinician" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground">
+          <ArrowLeft className="h-4 w-4 mr-1" /> Back to roster
+        </Link>
+        <Button size="sm" variant="outline" onClick={() => window.print()}>Print / Save PDF</Button>
+      </div>
       <h1 className="font-serif text-3xl mt-3">Client</h1>
       <div className="font-mono text-xs text-muted-foreground mt-1">{clientId}</div>
 

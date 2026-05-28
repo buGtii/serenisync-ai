@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Brain, LayoutDashboard, BookOpen, HeartPulse, MessageCircle, LogOut } from "lucide-react";
+import { CommandPalette } from "@/components/CommandPalette";
+import { NotificationBell } from "@/components/NotificationBell";
+import { Brain, LayoutDashboard, BookOpen, HeartPulse, MessageCircle, LogOut, Settings, Heart, Users, Calendar, UserCog, BarChart3 } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated")({ component: Layout });
 
 function Layout() {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut, roles } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [checked, setChecked] = useState(false);
@@ -26,6 +28,7 @@ function Layout() {
 
   if (loading || !user || !checked) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
+  const isClinician = roles.includes("clinician");
 
   return (
     <div className="min-h-screen flex">
@@ -34,12 +37,22 @@ function Layout() {
           <span className="h-9 w-9 rounded-xl bg-gradient-hero flex items-center justify-center"><Brain className="h-5 w-5 text-primary" /></span>
           Mindscape
         </Link>
+        <div className="px-1 pb-2"><CommandPalette /></div>
         <NavItem to="/dashboard" icon={LayoutDashboard}>Dashboard</NavItem>
         <NavItem to="/dsm" icon={BookOpen}>DSM Library</NavItem>
+        <NavItem to="/dsm/favorites" icon={Heart}>Favorites</NavItem>
         <NavItem to="/wellness" icon={HeartPulse}>Wellness</NavItem>
+        <NavItem to="/wellness/insights" icon={BarChart3}>Insights</NavItem>
         <NavItem to="/chat" icon={MessageCircle}>AI Companion</NavItem>
-        <div className="mt-auto pt-4 text-xs text-muted-foreground px-2">
-          <div className="truncate mb-2">{user.email}</div>
+        <NavItem to="/therapists" icon={Users}>Therapists</NavItem>
+        <NavItem to="/bookings" icon={Calendar}>Bookings</NavItem>
+        {isClinician && <NavItem to="/clinician" icon={UserCog}>Clinician</NavItem>}
+        <div className="mt-auto pt-4 px-2">
+          <div className="flex items-center gap-2 mb-2">
+            <NotificationBell />
+            <Link to="/settings" className="inline-flex items-center justify-center h-9 w-9 rounded-lg hover:bg-secondary transition" aria-label="Settings"><Settings className="h-4 w-4" /></Link>
+          </div>
+          <div className="text-xs text-muted-foreground truncate mb-2">{user.email}</div>
           <Button variant="ghost" size="sm" className="w-full justify-start" onClick={() => signOut().then(() => navigate({ to: "/" }))}>
             <LogOut className="h-4 w-4 mr-2" /> Sign out
           </Button>
@@ -57,3 +70,4 @@ function NavItem({ to, icon: Icon, children }: { to: string; icon: typeof Brain;
     </Link>
   );
 }
+

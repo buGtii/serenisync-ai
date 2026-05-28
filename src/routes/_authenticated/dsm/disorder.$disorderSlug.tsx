@@ -3,6 +3,7 @@ import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { BookmarkButton } from "@/components/BookmarkButton";
 import {
   ChevronLeft, Sparkles, Activity, Users, Compass, AlertTriangle,
   HeartHandshake, Baby, Globe2, ClipboardList, Pill, TrendingUp, BookOpen,
@@ -39,8 +40,11 @@ function Disorder() {
 
       {/* Hero */}
       <header className="mt-5 rounded-3xl border bg-gradient-hero p-7 sm:p-9 shadow-soft">
-        <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary/70">
-          <Sparkles className="h-3.5 w-3.5" /> DSM-5-TR · Educational Summary
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary/70">
+            <Sparkles className="h-3.5 w-3.5" /> DSM-5-TR · Educational Summary
+          </div>
+          <BookmarkButton disorderId={d.id} />
         </div>
         <h1 className="font-serif text-4xl sm:text-5xl mt-3 leading-[1.05]">{d.name}</h1>
         <div className="mt-4 flex gap-2 flex-wrap">
