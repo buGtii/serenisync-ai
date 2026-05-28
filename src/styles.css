@@ -124,8 +124,14 @@
     background-attachment: fixed;
     font-feature-settings: "ss01", "cv11";
   }
-  h1, h2, h3, .font-serif { font-family: var(--font-serif); letter-spacing: -0.01em; }
-}
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif);
+    letter-spacing: -0.018em;
+    font-feature-settings: "ss01", "ss02", "ss03";
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 50, "WONK" 0;
+  }
+  p, li { line-height: 1.65; }
 
 @layer utilities {
   .glass {
