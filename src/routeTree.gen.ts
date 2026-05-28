@@ -18,6 +18,7 @@ import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedWellnessRouteImport } from './routes/_authenticated/wellness'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
+import { Route as AuthenticatedAssessmentsRouteImport } from './routes/_authenticated/assessments'
 import { Route as AuthenticatedDsmIndexRouteImport } from './routes/_authenticated/dsm/index'
 import { Route as AuthenticatedClinicianIndexRouteImport } from './routes/_authenticated/clinician/index'
 import { Route as AuthenticatedDsmAttemptsRouteImport } from './routes/_authenticated/dsm/attempts'
@@ -70,6 +71,12 @@ const AuthenticatedChatRoute = AuthenticatedChatRouteImport.update({
   path: '/chat',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedAssessmentsRoute =
+  AuthenticatedAssessmentsRouteImport.update({
+    id: '/assessments',
+    path: '/assessments',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedDsmIndexRoute = AuthenticatedDsmIndexRouteImport.update({
   id: '/dsm/',
   path: '/dsm/',
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/crisis': typeof CrisisRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/assessments': typeof AuthenticatedAssessmentsRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/wellness': typeof AuthenticatedWellnessRoute
@@ -134,6 +142,7 @@ export interface FileRoutesByTo {
   '/crisis': typeof CrisisRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/assessments': typeof AuthenticatedAssessmentsRoute
   '/chat': typeof AuthenticatedChatRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/wellness': typeof AuthenticatedWellnessRoute
@@ -153,6 +162,7 @@ export interface FileRoutesById {
   '/crisis': typeof CrisisRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/_authenticated/assessments': typeof AuthenticatedAssessmentsRoute
   '/_authenticated/chat': typeof AuthenticatedChatRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/wellness': typeof AuthenticatedWellnessRoute
@@ -172,6 +182,7 @@ export interface FileRouteTypes {
     | '/crisis'
     | '/login'
     | '/signup'
+    | '/assessments'
     | '/chat'
     | '/dashboard'
     | '/wellness'
@@ -189,6 +200,7 @@ export interface FileRouteTypes {
     | '/crisis'
     | '/login'
     | '/signup'
+    | '/assessments'
     | '/chat'
     | '/dashboard'
     | '/wellness'
@@ -207,6 +219,7 @@ export interface FileRouteTypes {
     | '/crisis'
     | '/login'
     | '/signup'
+    | '/_authenticated/assessments'
     | '/_authenticated/chat'
     | '/_authenticated/dashboard'
     | '/_authenticated/wellness'
@@ -294,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedChatRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/assessments': {
+      id: '/_authenticated/assessments'
+      path: '/assessments'
+      fullPath: '/assessments'
+      preLoaderRoute: typeof AuthenticatedAssessmentsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dsm/': {
       id: '/_authenticated/dsm/'
       path: '/dsm'
@@ -347,6 +367,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedAssessmentsRoute: typeof AuthenticatedAssessmentsRoute
   AuthenticatedChatRoute: typeof AuthenticatedChatRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedWellnessRoute: typeof AuthenticatedWellnessRoute
@@ -360,6 +381,7 @@ interface AuthenticatedRouteChildren {
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAssessmentsRoute: AuthenticatedAssessmentsRoute,
   AuthenticatedChatRoute: AuthenticatedChatRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedWellnessRoute: AuthenticatedWellnessRoute,

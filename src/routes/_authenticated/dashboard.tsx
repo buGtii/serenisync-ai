@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAuth } from "@/lib/auth";
 import { Card } from "@/components/ui/card";
-import { BookOpen, HeartPulse, MessageCircle, ShieldAlert, GraduationCap } from "lucide-react";
+import { BookOpen, HeartPulse, MessageCircle, ShieldAlert, GraduationCap, ClipboardCheck, Briefcase } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({ component: Dashboard });
 
@@ -20,6 +20,10 @@ function Dashboard() {
         <Tile to="/dsm/attempts" icon={GraduationCap} title="Practice quizzes" body="Test your knowledge chapter by chapter. Track your scores over time." />
         <Tile to="/wellness" icon={HeartPulse} title="Wellness toolkit" body="Log mood, energy, and anxiety. Write a private journal entry." />
         <Tile to="/chat" icon={MessageCircle} title="AI Companion" body="A reflective conversation, with safety screening before every response." />
+        <Tile to="/assessments" icon={ClipboardCheck} title="Self-assessments" body="PHQ-9, GAD-7, PCL-5 — validated screeners with severity scoring and history." />
+        {(roles.includes("clinician") || roles.includes("admin")) && (
+          <Tile to="/clinician" icon={Briefcase} title="Clinician toolkit" body="Roster, SOAP notes, assessment administration, and treatment plans." />
+        )}
         <Tile to="/crisis" icon={ShieldAlert} title="Crisis resources" body="International hotlines and immediate support — always one tap away." />
       </div>
     </div>
