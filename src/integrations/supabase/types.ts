@@ -14,16 +14,533 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_conversations: {
+        Row: {
+          context: string
+          created_at: string
+          id: string
+          title: string | null
+          user_id: string
+        }
+        Insert: {
+          context?: string
+          created_at?: string
+          id?: string
+          title?: string | null
+          user_id: string
+        }
+        Update: {
+          context?: string
+          created_at?: string
+          id?: string
+          title?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      ai_messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "ai_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      audit_logs: {
+        Row: {
+          action: string
+          actor_id: string | null
+          at: string
+          id: string
+          ip: string | null
+          metadata: Json | null
+          resource: string | null
+          resource_id: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          at?: string
+          id?: string
+          ip?: string | null
+          metadata?: Json | null
+          resource?: string | null
+          resource_id?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          at?: string
+          id?: string
+          ip?: string | null
+          metadata?: Json | null
+          resource?: string | null
+          resource_id?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      consents: {
+        Row: {
+          accepted_at: string
+          id: string
+          kind: Database["public"]["Enums"]["consent_kind"]
+          user_id: string
+          version: string
+        }
+        Insert: {
+          accepted_at?: string
+          id?: string
+          kind: Database["public"]["Enums"]["consent_kind"]
+          user_id: string
+          version: string
+        }
+        Update: {
+          accepted_at?: string
+          id?: string
+          kind?: Database["public"]["Enums"]["consent_kind"]
+          user_id?: string
+          version?: string
+        }
+        Relationships: []
+      }
+      crisis_events: {
+        Row: {
+          created_at: string
+          excerpt: string | null
+          handled: boolean
+          id: string
+          kind: Database["public"]["Enums"]["crisis_kind"]
+          source: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          excerpt?: string | null
+          handled?: boolean
+          id?: string
+          kind: Database["public"]["Enums"]["crisis_kind"]
+          source?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          excerpt?: string | null
+          handled?: boolean
+          id?: string
+          kind?: Database["public"]["Enums"]["crisis_kind"]
+          source?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      dsm_assessment_tools: {
+        Row: {
+          acronym: string | null
+          description: string | null
+          disorder_id: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          acronym?: string | null
+          description?: string | null
+          disorder_id?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          acronym?: string | null
+          description?: string | null
+          disorder_id?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dsm_assessment_tools_disorder_id_fkey"
+            columns: ["disorder_id"]
+            isOneToOne: false
+            referencedRelation: "dsm_disorders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dsm_chapters: {
+        Row: {
+          color_hint: string | null
+          created_at: string
+          id: string
+          number: number
+          slug: string
+          summary: string
+          title: string
+        }
+        Insert: {
+          color_hint?: string | null
+          created_at?: string
+          id?: string
+          number: number
+          slug: string
+          summary: string
+          title: string
+        }
+        Update: {
+          color_hint?: string | null
+          created_at?: string
+          id?: string
+          number?: number
+          slug?: string
+          summary?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      dsm_criteria: {
+        Row: {
+          code: string
+          description: string
+          disorder_id: string
+          id: string
+          ordinal: number
+        }
+        Insert: {
+          code: string
+          description: string
+          disorder_id: string
+          id?: string
+          ordinal?: number
+        }
+        Update: {
+          code?: string
+          description?: string
+          disorder_id?: string
+          id?: string
+          ordinal?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dsm_criteria_disorder_id_fkey"
+            columns: ["disorder_id"]
+            isOneToOne: false
+            referencedRelation: "dsm_disorders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dsm_disorders: {
+        Row: {
+          chapter_id: string
+          comorbidities: string[] | null
+          created_at: string
+          cultural_considerations: string | null
+          developmental_considerations: string | null
+          differential_diagnoses: string[] | null
+          duration_requirement: string | null
+          exclusion_criteria: string | null
+          functional_impairment: string | null
+          gender_considerations: string | null
+          icd10: string | null
+          icd11: string | null
+          id: string
+          is_seeded: boolean
+          name: string
+          overview: string
+          risk_factors: string[] | null
+          slug: string
+        }
+        Insert: {
+          chapter_id: string
+          comorbidities?: string[] | null
+          created_at?: string
+          cultural_considerations?: string | null
+          developmental_considerations?: string | null
+          differential_diagnoses?: string[] | null
+          duration_requirement?: string | null
+          exclusion_criteria?: string | null
+          functional_impairment?: string | null
+          gender_considerations?: string | null
+          icd10?: string | null
+          icd11?: string | null
+          id?: string
+          is_seeded?: boolean
+          name: string
+          overview: string
+          risk_factors?: string[] | null
+          slug: string
+        }
+        Update: {
+          chapter_id?: string
+          comorbidities?: string[] | null
+          created_at?: string
+          cultural_considerations?: string | null
+          developmental_considerations?: string | null
+          differential_diagnoses?: string[] | null
+          duration_requirement?: string | null
+          exclusion_criteria?: string | null
+          functional_impairment?: string | null
+          gender_considerations?: string | null
+          icd10?: string | null
+          icd11?: string | null
+          id?: string
+          is_seeded?: boolean
+          name?: string
+          overview?: string
+          risk_factors?: string[] | null
+          slug?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dsm_disorders_chapter_id_fkey"
+            columns: ["chapter_id"]
+            isOneToOne: false
+            referencedRelation: "dsm_chapters"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dsm_specifiers: {
+        Row: {
+          description: string | null
+          disorder_id: string
+          id: string
+          label: string
+        }
+        Insert: {
+          description?: string | null
+          disorder_id: string
+          id?: string
+          label: string
+        }
+        Update: {
+          description?: string | null
+          disorder_id?: string
+          id?: string
+          label?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dsm_specifiers_disorder_id_fkey"
+            columns: ["disorder_id"]
+            isOneToOne: false
+            referencedRelation: "dsm_disorders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      journal_entries: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          title: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          title?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          title?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mood_logs: {
+        Row: {
+          anxiety: number | null
+          created_at: string
+          energy: number | null
+          id: string
+          mood: number
+          note: string | null
+          user_id: string
+        }
+        Insert: {
+          anxiety?: number | null
+          created_at?: string
+          energy?: number | null
+          id?: string
+          mood: number
+          note?: string | null
+          user_id: string
+        }
+        Update: {
+          anxiety?: number | null
+          created_at?: string
+          energy?: number | null
+          id?: string
+          mood?: number
+          note?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          country: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          locale: string
+          timezone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          country?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          locale?: string
+          timezone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          country?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          locale?: string
+          timezone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quiz_attempts: {
+        Row: {
+          chapter_id: string | null
+          created_at: string
+          details: Json | null
+          id: string
+          score: number
+          total: number
+          user_id: string
+        }
+        Insert: {
+          chapter_id?: string | null
+          created_at?: string
+          details?: Json | null
+          id?: string
+          score: number
+          total: number
+          user_id: string
+        }
+        Update: {
+          chapter_id?: string | null
+          created_at?: string
+          details?: Json | null
+          id?: string
+          score?: number
+          total?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_attempts_chapter_id_fkey"
+            columns: ["chapter_id"]
+            isOneToOne: false
+            referencedRelation: "dsm_chapters"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          granted_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          granted_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          granted_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role:
+        | "guest"
+        | "client"
+        | "student"
+        | "researcher"
+        | "clinician"
+        | "supervisor"
+        | "admin"
+      consent_kind:
+        | "terms"
+        | "privacy"
+        | "clinical_disclaimer"
+        | "ai_use"
+        | "research"
+      crisis_kind:
+        | "suicide"
+        | "self_harm"
+        | "psychosis"
+        | "violence"
+        | "substance_withdrawal"
+        | "other"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +667,31 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: [
+        "guest",
+        "client",
+        "student",
+        "researcher",
+        "clinician",
+        "supervisor",
+        "admin",
+      ],
+      consent_kind: [
+        "terms",
+        "privacy",
+        "clinical_disclaimer",
+        "ai_use",
+        "research",
+      ],
+      crisis_kind: [
+        "suicide",
+        "self_harm",
+        "psychosis",
+        "violence",
+        "substance_withdrawal",
+        "other",
+      ],
+    },
   },
 } as const
