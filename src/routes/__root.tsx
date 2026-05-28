@@ -6,6 +6,7 @@ import {
 import { useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/lib/auth";
+import { ThemeProvider } from "@/lib/theme";
 import { initMobile } from "@/lib/mobile";
 
 import appCss from "../styles.css?url";
