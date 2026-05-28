@@ -1,6 +1,7 @@
-import { createFileRoute, Outlet, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { createFileRoute, Outlet, Link, useNavigate, useLocation } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Brain, LayoutDashboard, BookOpen, HeartPulse, MessageCircle, LogOut } from "lucide-react";
 
@@ -9,8 +10,22 @@ export const Route = createFileRoute("/_authenticated")({ component: Layout });
 function Layout() {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
-  useEffect(() => { if (!loading && !user) navigate({ to: "/login", replace: true }); }, [loading, user, navigate]);
-  if (loading || !user) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
+  const location = useLocation();
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    if (loading) return;
+    if (!user) { navigate({ to: "/login", replace: true }); return; }
+    if (location.pathname === "/onboarding") { setChecked(true); return; }
+    supabase.from("profiles").select("onboarded_at").eq("id", user.id).maybeSingle()
+      .then(({ data }) => {
+        if (!data?.onboarded_at) navigate({ to: "/onboarding", replace: true });
+        else setChecked(true);
+      });
+  }, [loading, user, location.pathname, navigate]);
+
+  if (loading || !user || !checked) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
+
 
   return (
     <div className="min-h-screen flex">
