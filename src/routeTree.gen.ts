@@ -19,7 +19,9 @@ import { Route as AuthenticatedWellnessRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
 import { Route as AuthenticatedDsmIndexRouteImport } from './routes/_authenticated/dsm/index'
+import { Route as AuthenticatedDsmAttemptsRouteImport } from './routes/_authenticated/dsm/attempts'
 import { Route as AuthenticatedDsmChapterSlugRouteImport } from './routes/_authenticated/dsm/$chapterSlug'
+import { Route as AuthenticatedDsmQuizChapterSlugRouteImport } from './routes/_authenticated/dsm/quiz.$chapterSlug'
 import { Route as AuthenticatedDsmDisorderDisorderSlugRouteImport } from './routes/_authenticated/dsm/disorder.$disorderSlug'
 
 const SignupRoute = SignupRouteImport.update({
@@ -71,10 +73,22 @@ const AuthenticatedDsmIndexRoute = AuthenticatedDsmIndexRouteImport.update({
   path: '/dsm/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedDsmAttemptsRoute =
+  AuthenticatedDsmAttemptsRouteImport.update({
+    id: '/dsm/attempts',
+    path: '/dsm/attempts',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedDsmChapterSlugRoute =
   AuthenticatedDsmChapterSlugRouteImport.update({
     id: '/dsm/$chapterSlug',
     path: '/dsm/$chapterSlug',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDsmQuizChapterSlugRoute =
+  AuthenticatedDsmQuizChapterSlugRouteImport.update({
+    id: '/dsm/quiz/$chapterSlug',
+    path: '/dsm/quiz/$chapterSlug',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedDsmDisorderDisorderSlugRoute =
@@ -94,8 +108,10 @@ export interface FileRoutesByFullPath {
   '/wellness': typeof AuthenticatedWellnessRoute
   '/api/chat': typeof ApiChatRoute
   '/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
+  '/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
   '/dsm/': typeof AuthenticatedDsmIndexRoute
   '/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
+  '/dsm/quiz/$chapterSlug': typeof AuthenticatedDsmQuizChapterSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -107,8 +123,10 @@ export interface FileRoutesByTo {
   '/wellness': typeof AuthenticatedWellnessRoute
   '/api/chat': typeof ApiChatRoute
   '/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
+  '/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
   '/dsm': typeof AuthenticatedDsmIndexRoute
   '/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
+  '/dsm/quiz/$chapterSlug': typeof AuthenticatedDsmQuizChapterSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -122,8 +140,10 @@ export interface FileRoutesById {
   '/_authenticated/wellness': typeof AuthenticatedWellnessRoute
   '/api/chat': typeof ApiChatRoute
   '/_authenticated/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
+  '/_authenticated/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
   '/_authenticated/dsm/': typeof AuthenticatedDsmIndexRoute
   '/_authenticated/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
+  '/_authenticated/dsm/quiz/$chapterSlug': typeof AuthenticatedDsmQuizChapterSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -137,8 +157,10 @@ export interface FileRouteTypes {
     | '/wellness'
     | '/api/chat'
     | '/dsm/$chapterSlug'
+    | '/dsm/attempts'
     | '/dsm/'
     | '/dsm/disorder/$disorderSlug'
+    | '/dsm/quiz/$chapterSlug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -150,8 +172,10 @@ export interface FileRouteTypes {
     | '/wellness'
     | '/api/chat'
     | '/dsm/$chapterSlug'
+    | '/dsm/attempts'
     | '/dsm'
     | '/dsm/disorder/$disorderSlug'
+    | '/dsm/quiz/$chapterSlug'
   id:
     | '__root__'
     | '/'
@@ -164,8 +188,10 @@ export interface FileRouteTypes {
     | '/_authenticated/wellness'
     | '/api/chat'
     | '/_authenticated/dsm/$chapterSlug'
+    | '/_authenticated/dsm/attempts'
     | '/_authenticated/dsm/'
     | '/_authenticated/dsm/disorder/$disorderSlug'
+    | '/_authenticated/dsm/quiz/$chapterSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -249,11 +275,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDsmIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/dsm/attempts': {
+      id: '/_authenticated/dsm/attempts'
+      path: '/dsm/attempts'
+      fullPath: '/dsm/attempts'
+      preLoaderRoute: typeof AuthenticatedDsmAttemptsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dsm/$chapterSlug': {
       id: '/_authenticated/dsm/$chapterSlug'
       path: '/dsm/$chapterSlug'
       fullPath: '/dsm/$chapterSlug'
       preLoaderRoute: typeof AuthenticatedDsmChapterSlugRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dsm/quiz/$chapterSlug': {
+      id: '/_authenticated/dsm/quiz/$chapterSlug'
+      path: '/dsm/quiz/$chapterSlug'
+      fullPath: '/dsm/quiz/$chapterSlug'
+      preLoaderRoute: typeof AuthenticatedDsmQuizChapterSlugRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/dsm/disorder/$disorderSlug': {
@@ -271,8 +311,10 @@ interface AuthenticatedRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedWellnessRoute: typeof AuthenticatedWellnessRoute
   AuthenticatedDsmChapterSlugRoute: typeof AuthenticatedDsmChapterSlugRoute
+  AuthenticatedDsmAttemptsRoute: typeof AuthenticatedDsmAttemptsRoute
   AuthenticatedDsmIndexRoute: typeof AuthenticatedDsmIndexRoute
   AuthenticatedDsmDisorderDisorderSlugRoute: typeof AuthenticatedDsmDisorderDisorderSlugRoute
+  AuthenticatedDsmQuizChapterSlugRoute: typeof AuthenticatedDsmQuizChapterSlugRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -280,9 +322,11 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedWellnessRoute: AuthenticatedWellnessRoute,
   AuthenticatedDsmChapterSlugRoute: AuthenticatedDsmChapterSlugRoute,
+  AuthenticatedDsmAttemptsRoute: AuthenticatedDsmAttemptsRoute,
   AuthenticatedDsmIndexRoute: AuthenticatedDsmIndexRoute,
   AuthenticatedDsmDisorderDisorderSlugRoute:
     AuthenticatedDsmDisorderDisorderSlugRoute,
+  AuthenticatedDsmQuizChapterSlugRoute: AuthenticatedDsmQuizChapterSlugRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
