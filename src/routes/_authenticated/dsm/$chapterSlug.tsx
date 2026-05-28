@@ -2,15 +2,19 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
-import { ChevronLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, GraduationCap } from "lucide-react";
 
 const chapterQO = (slug: string) => queryOptions({
   queryKey: ["dsm_chapter", slug],
   queryFn: async () => {
     const { data: chapter, error } = await supabase.from("dsm_chapters").select("*").eq("slug", slug).single();
     if (error) throw error;
-    const { data: disorders } = await supabase.from("dsm_disorders").select("id,slug,name,icd10,overview").eq("chapter_id", chapter.id).order("name");
-    return { chapter, disorders: disorders ?? [] };
+    const [{ data: disorders }, { count: quizCount }] = await Promise.all([
+      supabase.from("dsm_disorders").select("id,slug,name,icd10,overview").eq("chapter_id", chapter.id).order("name"),
+      supabase.from("dsm_quiz_questions").select("id", { count: "exact", head: true }).eq("chapter_id", chapter.id),
+    ]);
+    return { chapter, disorders: disorders ?? [], quizCount: quizCount ?? 0 };
   },
 });
 
@@ -28,6 +32,21 @@ function Chapter() {
       <div className="mt-4 text-xs uppercase tracking-widest text-muted-foreground">Chapter {data.chapter.number}</div>
       <h1 className="font-serif text-4xl mt-2">{data.chapter.title}</h1>
       <p className="mt-4 text-muted-foreground">{data.chapter.summary}</p>
+
+      {data.quizCount > 0 && (
+        <Card className="mt-6 p-4 flex items-center justify-between gap-4 bg-gradient-hero border-primary/20">
+          <div className="flex items-center gap-3">
+            <span className="h-10 w-10 rounded-xl bg-background flex items-center justify-center"><GraduationCap className="h-5 w-5 text-primary" /></span>
+            <div>
+              <div className="font-medium">Practice quiz</div>
+              <div className="text-xs text-muted-foreground">{data.quizCount} questions · multiple choice with explanations</div>
+            </div>
+          </div>
+          <Button asChild size="sm">
+            <Link to="/dsm/quiz/$chapterSlug" params={{ chapterSlug }}>Start quiz</Link>
+          </Button>
+        </Card>
+      )}
 
       <h2 className="font-serif text-2xl mt-10">Disorders in this chapter</h2>
       {data.disorders.length === 0 ? (
