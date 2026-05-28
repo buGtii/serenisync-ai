@@ -71,10 +71,3 @@ function NavItem({ to, icon: Icon, children }: { to: string; icon: typeof Brain;
   );
 }
 
-function NavItem({ to, icon: Icon, children }: { to: string; icon: typeof Brain; children: React.ReactNode }) {
-  return (
-    <Link to={to} className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-secondary hover:text-foreground transition" activeProps={{ className: "bg-secondary text-foreground font-medium" }}>
-      <Icon className="h-4 w-4" /> {children}
-    </Link>
-  );
-}
