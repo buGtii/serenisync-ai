@@ -145,6 +145,74 @@ export type Database = {
         }
         Relationships: []
       }
+      booking_messages: {
+        Row: {
+          body: string
+          booking_id: string
+          created_at: string
+          id: string
+          sender_id: string
+        }
+        Insert: {
+          body: string
+          booking_id: string
+          created_at?: string
+          id?: string
+          sender_id: string
+        }
+        Update: {
+          body?: string
+          booking_id?: string
+          created_at?: string
+          id?: string
+          sender_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_messages_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          client_id: string
+          created_at: string
+          duration_minutes: number
+          id: string
+          message: string | null
+          scheduled_at: string
+          status: string
+          therapist_id: string
+          updated_at: string
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          message?: string | null
+          scheduled_at: string
+          status?: string
+          therapist_id: string
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          message?: string | null
+          scheduled_at?: string
+          status?: string
+          therapist_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       clinician_clients: {
         Row: {
           client_id: string
@@ -641,6 +709,96 @@ export type Database = {
           session_date?: string
           subjective?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      therapist_availability: {
+        Row: {
+          created_at: string
+          day_of_week: number
+          end_time: string
+          id: string
+          start_time: string
+          therapist_id: string
+        }
+        Insert: {
+          created_at?: string
+          day_of_week: number
+          end_time: string
+          id?: string
+          start_time: string
+          therapist_id: string
+        }
+        Update: {
+          created_at?: string
+          day_of_week?: number
+          end_time?: string
+          id?: string
+          start_time?: string
+          therapist_id?: string
+        }
+        Relationships: []
+      }
+      therapist_profiles: {
+        Row: {
+          accepting_new_clients: boolean
+          avatar_url: string | null
+          bio: string | null
+          country: string | null
+          created_at: string
+          credentials: string | null
+          currency: string
+          display_name: string
+          headline: string | null
+          hourly_rate_cents: number | null
+          id: string
+          languages: string[]
+          modalities: string[]
+          specialties: string[]
+          timezone: string | null
+          updated_at: string
+          user_id: string
+          years_experience: number | null
+        }
+        Insert: {
+          accepting_new_clients?: boolean
+          avatar_url?: string | null
+          bio?: string | null
+          country?: string | null
+          created_at?: string
+          credentials?: string | null
+          currency?: string
+          display_name: string
+          headline?: string | null
+          hourly_rate_cents?: number | null
+          id?: string
+          languages?: string[]
+          modalities?: string[]
+          specialties?: string[]
+          timezone?: string | null
+          updated_at?: string
+          user_id: string
+          years_experience?: number | null
+        }
+        Update: {
+          accepting_new_clients?: boolean
+          avatar_url?: string | null
+          bio?: string | null
+          country?: string | null
+          created_at?: string
+          credentials?: string | null
+          currency?: string
+          display_name?: string
+          headline?: string | null
+          hourly_rate_cents?: number | null
+          id?: string
+          languages?: string[]
+          modalities?: string[]
+          specialties?: string[]
+          timezone?: string | null
+          updated_at?: string
+          user_id?: string
+          years_experience?: number | null
         }
         Relationships: []
       }
