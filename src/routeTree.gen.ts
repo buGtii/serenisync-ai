@@ -9,38 +9,204 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as CrisisRouteImport } from './routes/crisis'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AuthenticatedWellnessRouteImport } from './routes/_authenticated/wellness'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedChatRouteImport } from './routes/_authenticated/chat'
+import { Route as AuthenticatedDsmIndexRouteImport } from './routes/_authenticated/dsm/index'
+import { Route as AuthenticatedDsmChapterSlugRouteImport } from './routes/_authenticated/dsm/$chapterSlug'
+import { Route as AuthenticatedDsmDisorderDisorderSlugRouteImport } from './routes/_authenticated/dsm/disorder.$disorderSlug'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrisisRoute = CrisisRouteImport.update({
+  id: '/crisis',
+  path: '/crisis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedWellnessRoute = AuthenticatedWellnessRouteImport.update({
+  id: '/wellness',
+  path: '/wellness',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedChatRoute = AuthenticatedChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedDsmIndexRoute = AuthenticatedDsmIndexRouteImport.update({
+  id: '/dsm/',
+  path: '/dsm/',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedDsmChapterSlugRoute =
+  AuthenticatedDsmChapterSlugRouteImport.update({
+    id: '/dsm/$chapterSlug',
+    path: '/dsm/$chapterSlug',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDsmDisorderDisorderSlugRoute =
+  AuthenticatedDsmDisorderDisorderSlugRouteImport.update({
+    id: '/dsm/disorder/$disorderSlug',
+    path: '/dsm/disorder/$disorderSlug',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/crisis': typeof CrisisRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/chat': typeof AuthenticatedChatRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/wellness': typeof AuthenticatedWellnessRoute
+  '/api/chat': typeof ApiChatRoute
+  '/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
+  '/dsm/': typeof AuthenticatedDsmIndexRoute
+  '/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/crisis': typeof CrisisRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/chat': typeof AuthenticatedChatRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/wellness': typeof AuthenticatedWellnessRoute
+  '/api/chat': typeof ApiChatRoute
+  '/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
+  '/dsm': typeof AuthenticatedDsmIndexRoute
+  '/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/crisis': typeof CrisisRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/_authenticated/chat': typeof AuthenticatedChatRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/wellness': typeof AuthenticatedWellnessRoute
+  '/api/chat': typeof ApiChatRoute
+  '/_authenticated/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
+  '/_authenticated/dsm/': typeof AuthenticatedDsmIndexRoute
+  '/_authenticated/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/crisis'
+    | '/login'
+    | '/signup'
+    | '/chat'
+    | '/dashboard'
+    | '/wellness'
+    | '/api/chat'
+    | '/dsm/$chapterSlug'
+    | '/dsm/'
+    | '/dsm/disorder/$disorderSlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/crisis'
+    | '/login'
+    | '/signup'
+    | '/chat'
+    | '/dashboard'
+    | '/wellness'
+    | '/api/chat'
+    | '/dsm/$chapterSlug'
+    | '/dsm'
+    | '/dsm/disorder/$disorderSlug'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/crisis'
+    | '/login'
+    | '/signup'
+    | '/_authenticated/chat'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/wellness'
+    | '/api/chat'
+    | '/_authenticated/dsm/$chapterSlug'
+    | '/_authenticated/dsm/'
+    | '/_authenticated/dsm/disorder/$disorderSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  CrisisRoute: typeof CrisisRoute
+  LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crisis': {
+      id: '/crisis'
+      path: '/crisis'
+      fullPath: '/crisis'
+      preLoaderRoute: typeof CrisisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +214,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/wellness': {
+      id: '/_authenticated/wellness'
+      path: '/wellness'
+      fullPath: '/wellness'
+      preLoaderRoute: typeof AuthenticatedWellnessRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/chat': {
+      id: '/_authenticated/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof AuthenticatedChatRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dsm/': {
+      id: '/_authenticated/dsm/'
+      path: '/dsm'
+      fullPath: '/dsm/'
+      preLoaderRoute: typeof AuthenticatedDsmIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dsm/$chapterSlug': {
+      id: '/_authenticated/dsm/$chapterSlug'
+      path: '/dsm/$chapterSlug'
+      fullPath: '/dsm/$chapterSlug'
+      preLoaderRoute: typeof AuthenticatedDsmChapterSlugRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dsm/disorder/$disorderSlug': {
+      id: '/_authenticated/dsm/disorder/$disorderSlug'
+      path: '/dsm/disorder/$disorderSlug'
+      fullPath: '/dsm/disorder/$disorderSlug'
+      preLoaderRoute: typeof AuthenticatedDsmDisorderDisorderSlugRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedChatRoute: typeof AuthenticatedChatRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedWellnessRoute: typeof AuthenticatedWellnessRoute
+  AuthenticatedDsmChapterSlugRoute: typeof AuthenticatedDsmChapterSlugRoute
+  AuthenticatedDsmIndexRoute: typeof AuthenticatedDsmIndexRoute
+  AuthenticatedDsmDisorderDisorderSlugRoute: typeof AuthenticatedDsmDisorderDisorderSlugRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedChatRoute: AuthenticatedChatRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedWellnessRoute: AuthenticatedWellnessRoute,
+  AuthenticatedDsmChapterSlugRoute: AuthenticatedDsmChapterSlugRoute,
+  AuthenticatedDsmIndexRoute: AuthenticatedDsmIndexRoute,
+  AuthenticatedDsmDisorderDisorderSlugRoute:
+    AuthenticatedDsmDisorderDisorderSlugRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  CrisisRoute: CrisisRoute,
+  LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
