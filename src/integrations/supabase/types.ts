@@ -374,6 +374,27 @@ export type Database = {
           },
         ]
       }
+      dsm_bookmarks: {
+        Row: {
+          created_at: string
+          disorder_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          disorder_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          disorder_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       dsm_chapters: {
         Row: {
           color_hint: string | null
@@ -652,6 +673,39 @@ export type Database = {
           id?: string
           mood?: number
           note?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          kind: string
+          link: string | null
+          read_at: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          kind: string
+          link?: string | null
+          read_at?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          kind?: string
+          link?: string | null
+          read_at?: string | null
+          title?: string
           user_id?: string
         }
         Relationships: []
