@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useAuth } from "@/lib/auth";
 import { Card } from "@/components/ui/card";
-import { BookOpen, HeartPulse, MessageCircle, ShieldAlert, GraduationCap, ClipboardCheck, Briefcase } from "lucide-react";
+import { BookOpen, HeartPulse, MessageCircle, ShieldAlert, GraduationCap, ClipboardCheck, Briefcase, Users, Calendar, UserCog } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({ component: Dashboard });
 
@@ -21,8 +21,13 @@ function Dashboard() {
         <Tile to="/wellness" icon={HeartPulse} title="Wellness toolkit" body="Log mood, energy, and anxiety. Write a private journal entry." />
         <Tile to="/chat" icon={MessageCircle} title="AI Companion" body="A reflective conversation, with safety screening before every response." />
         <Tile to="/assessments" icon={ClipboardCheck} title="Self-assessments" body="PHQ-9, GAD-7, PCL-5 — validated screeners with severity scoring and history." />
+        <Tile to="/therapists" icon={Users} title="Find a therapist" body="Browse clinicians accepting new clients. Filter by specialty, modality, language." />
+        <Tile to="/bookings" icon={Calendar} title="Your bookings" body="Session requests, confirmations, and secure messaging." />
         {(roles.includes("clinician") || roles.includes("admin")) && (
-          <Tile to="/clinician" icon={Briefcase} title="Clinician toolkit" body="Roster, SOAP notes, assessment administration, and treatment plans." />
+          <>
+            <Tile to="/clinician" icon={Briefcase} title="Clinician toolkit" body="Roster, SOAP notes, assessment administration, and treatment plans." />
+            <Tile to="/therapist-profile" icon={UserCog} title="Therapist profile" body="Manage your public marketplace profile and weekly availability." />
+          </>
         )}
         <Tile to="/crisis" icon={ShieldAlert} title="Crisis resources" body="International hotlines and immediate support — always one tap away." />
       </div>
