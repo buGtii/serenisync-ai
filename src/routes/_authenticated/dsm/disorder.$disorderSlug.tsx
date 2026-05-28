@@ -3,6 +3,7 @@ import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { BookmarkButton } from "@/components/BookmarkButton";
 import {
   ChevronLeft, Sparkles, Activity, Users, Compass, AlertTriangle,
   HeartHandshake, Baby, Globe2, ClipboardList, Pill, TrendingUp, BookOpen,
