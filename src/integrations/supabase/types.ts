@@ -73,6 +73,42 @@ export type Database = {
           },
         ]
       }
+      assessment_administrations: {
+        Row: {
+          answers: Json
+          client_id: string
+          clinician_id: string | null
+          created_at: string
+          id: string
+          instrument: string
+          notes: string | null
+          severity: string | null
+          total_score: number
+        }
+        Insert: {
+          answers: Json
+          client_id: string
+          clinician_id?: string | null
+          created_at?: string
+          id?: string
+          instrument: string
+          notes?: string | null
+          severity?: string | null
+          total_score: number
+        }
+        Update: {
+          answers?: Json
+          client_id?: string
+          clinician_id?: string | null
+          created_at?: string
+          id?: string
+          instrument?: string
+          notes?: string | null
+          severity?: string | null
+          total_score?: number
+        }
+        Relationships: []
+      }
       audit_logs: {
         Row: {
           action: string
@@ -106,6 +142,36 @@ export type Database = {
           resource?: string | null
           resource_id?: string | null
           user_agent?: string | null
+        }
+        Relationships: []
+      }
+      clinician_clients: {
+        Row: {
+          client_id: string
+          clinician_id: string
+          created_at: string
+          id: string
+          notes: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          client_id: string
+          clinician_id: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string
+          clinician_id?: string
+          created_at?: string
+          id?: string
+          notes?: string | null
+          status?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -535,6 +601,90 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      session_notes: {
+        Row: {
+          assessment: string | null
+          client_id: string
+          clinician_id: string
+          created_at: string
+          id: string
+          objective: string | null
+          plan: string | null
+          risk_flags: string[] | null
+          session_date: string
+          subjective: string | null
+          updated_at: string
+        }
+        Insert: {
+          assessment?: string | null
+          client_id: string
+          clinician_id: string
+          created_at?: string
+          id?: string
+          objective?: string | null
+          plan?: string | null
+          risk_flags?: string[] | null
+          session_date?: string
+          subjective?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assessment?: string | null
+          client_id?: string
+          clinician_id?: string
+          created_at?: string
+          id?: string
+          objective?: string | null
+          plan?: string | null
+          risk_flags?: string[] | null
+          session_date?: string
+          subjective?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      treatment_plans: {
+        Row: {
+          client_id: string
+          clinician_id: string
+          created_at: string
+          diagnosis: string | null
+          goals: Json
+          id: string
+          interventions: Json
+          status: string
+          target_date: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          client_id: string
+          clinician_id: string
+          created_at?: string
+          diagnosis?: string | null
+          goals?: Json
+          id?: string
+          interventions?: Json
+          status?: string
+          target_date?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string
+          clinician_id?: string
+          created_at?: string
+          diagnosis?: string | null
+          goals?: Json
+          id?: string
+          interventions?: Json
+          status?: string
+          target_date?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {
