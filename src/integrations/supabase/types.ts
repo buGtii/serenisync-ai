@@ -243,6 +243,51 @@ export type Database = {
         }
         Relationships: []
       }
+      clinician_verifications: {
+        Row: {
+          created_at: string
+          id: string
+          license_country: string | null
+          license_number: string | null
+          notes: string | null
+          organization: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          specialization: string | null
+          status: string
+          user_id: string
+          years_experience: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          license_country?: string | null
+          license_number?: string | null
+          notes?: string | null
+          organization?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          specialization?: string | null
+          status?: string
+          user_id: string
+          years_experience?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          license_country?: string | null
+          license_number?: string | null
+          notes?: string | null
+          organization?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          specialization?: string | null
+          status?: string
+          user_id?: string
+          years_experience?: number | null
+        }
+        Relationships: []
+      }
       consents: {
         Row: {
           accepted_at: string
@@ -602,31 +647,46 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          clinician_details: Json | null
           country: string | null
           created_at: string
           display_name: string | null
           id: string
+          intent_role: string | null
           locale: string
+          onboarded_at: string | null
+          researcher_details: Json | null
+          student_details: Json | null
           timezone: string | null
           updated_at: string
         }
         Insert: {
           avatar_url?: string | null
+          clinician_details?: Json | null
           country?: string | null
           created_at?: string
           display_name?: string | null
           id: string
+          intent_role?: string | null
           locale?: string
+          onboarded_at?: string | null
+          researcher_details?: Json | null
+          student_details?: Json | null
           timezone?: string | null
           updated_at?: string
         }
         Update: {
           avatar_url?: string | null
+          clinician_details?: Json | null
           country?: string | null
           created_at?: string
           display_name?: string | null
           id?: string
+          intent_role?: string | null
           locale?: string
+          onboarded_at?: string | null
+          researcher_details?: Json | null
+          student_details?: Json | null
           timezone?: string | null
           updated_at?: string
         }
