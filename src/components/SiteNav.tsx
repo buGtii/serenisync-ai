@@ -12,7 +12,7 @@ export function SiteNav() {
           <span className="h-9 w-9 rounded-xl bg-gradient-hero flex items-center justify-center shadow-soft">
             <Brain className="h-5 w-5 text-primary" />
           </span>
-          Mindscape
+          PsyDx
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           <a href="/#features" className="hover:text-foreground">Features</a>

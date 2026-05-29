@@ -1,4 +1,4 @@
-# Mindscape Companion
+# PsyDx
 
 AI-assisted mental wellness, psychology learning (DSM-5-TR), and clinical support platform.
 

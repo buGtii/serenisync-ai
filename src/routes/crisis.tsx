@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Phone, Globe } from "lucide-react";
 
 export const Route = createFileRoute("/crisis")({
-  head: () => ({ meta: [{ title: "Crisis Resources — Mindscape Companion" }, { name: "description", content: "International crisis hotlines and immediate support resources." }] }),
+  head: () => ({ meta: [{ title: "Crisis Resources — PsyDx" }, { name: "description", content: "International crisis hotlines and immediate support resources." }] }),
   component: Crisis,
 });
 

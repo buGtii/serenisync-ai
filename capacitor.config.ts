@@ -1,6 +1,6 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 
-// Mindscape Companion — Capacitor configuration
+// PsyDx — Capacitor configuration
 // Android-first; iOS can be added later via `npx cap add ios`.
 //
 // Build pipeline:
@@ -11,8 +11,8 @@ import type { CapacitorConfig } from "@capacitor/cli";
 // During development against a remote dev URL, set the server.url temporarily
 // (do NOT ship that to production builds).
 const config: CapacitorConfig = {
-  appId: "app.mindscape.companion",
-  appName: "Mindscape Companion",
+  appId: "app.psydx.companion",
+  appName: "PsyDx",
   webDir: "dist",
   bundledWebRuntime: false,
   android: {

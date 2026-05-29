@@ -18,7 +18,7 @@ function Settings() {
       <header>
         <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Preferences</div>
         <h1 className="font-serif text-4xl mt-2">Settings</h1>
-        <p className="mt-2 text-muted-foreground">Personalize how Mindscape looks and works for you.</p>
+        <p className="mt-2 text-muted-foreground">Personalize how PsyDx looks and works for you.</p>
       </header>
 
       <Card className="mt-8 p-6">

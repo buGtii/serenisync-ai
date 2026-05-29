@@ -24,7 +24,7 @@ function Landing() {
           <em className="text-primary/80">and care for the mind.</em>
         </h1>
         <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Mindscape Companion brings together a DSM-5-TR learning engine, a wellness toolkit with safety-first AI, and clinical support — all in one premium mental health platform.
+          PsyDx brings together a DSM-5-TR learning engine, a wellness toolkit with safety-first AI, and clinical support — all in one premium mental health platform.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button asChild size="lg" className="rounded-full px-7"><Link to="/signup">Start free</Link></Button>

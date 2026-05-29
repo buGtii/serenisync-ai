@@ -1,4 +1,4 @@
-# Android (Capacitor) — Mindscape Companion
+# Android (Capacitor) — PsyDx
 
 This project ships with Capacitor v8 + Android platform configured. The Android
 project is generated locally — it is NOT committed to the repo. Generate it on
@@ -51,8 +51,8 @@ All are wired into `capacitor.config.ts` with safe defaults. `initMobile()` in
 bar style, and intercept the Android back button.
 
 ## App identity
-- App ID: `app.mindscape.companion`
-- App name: `Mindscape Companion`
+- App ID: `app.psydx.companion`
+- App name: `PsyDx`
 - Min SDK: defaults from Capacitor v8 (Android 6.0 / API 23+)
 
 ## Crisis-resource icon
