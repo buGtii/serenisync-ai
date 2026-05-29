@@ -35,7 +35,7 @@ function Layout() {
       <aside className="hidden md:flex w-60 flex-col glass border-r border-border p-4 gap-1">
         <Link to="/" className="flex items-center gap-2 font-serif text-xl px-2 py-3">
           <span className="h-9 w-9 rounded-xl bg-gradient-hero flex items-center justify-center"><Brain className="h-5 w-5 text-primary" /></span>
-          Mindscape
+          PsyDx
         </Link>
         <div className="px-1 pb-2"><CommandPalette /></div>
         <NavItem to="/dashboard" icon={LayoutDashboard}>Dashboard</NavItem>

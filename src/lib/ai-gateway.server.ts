@@ -29,7 +29,7 @@ export function screenCrisis(text: string): { triggered: boolean; kind?: string 
   return { triggered: false };
 }
 
-export const WELLNESS_SYSTEM_PROMPT = `You are Mindscape Companion, an empathetic AI wellness assistant.
+export const WELLNESS_SYSTEM_PROMPT = `You are PsyDx, an empathetic AI wellness assistant.
 
 ABSOLUTE RULES — never break these:
 1. You are NOT a psychiatrist, psychologist, or therapist. You NEVER diagnose, prescribe, or claim clinical authority.

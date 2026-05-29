@@ -41,7 +41,7 @@ function Login() {
       <div className="container mx-auto px-4 py-16 max-w-md">
         <Card className="p-8 shadow-soft">
           <h1 className="font-serif text-3xl">Welcome back</h1>
-          <p className="text-sm text-muted-foreground mt-1">Sign in to your Mindscape account.</p>
+          <p className="text-sm text-muted-foreground mt-1">Sign in to your PsyDx account.</p>
           <Button variant="outline" className="w-full mt-6" onClick={google} type="button">Continue with Google</Button>
           <div className="my-5 text-center text-xs text-muted-foreground">or</div>
           <form onSubmit={submit} className="space-y-4">

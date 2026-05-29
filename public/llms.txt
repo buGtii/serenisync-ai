@@ -1,8 +1,8 @@
-# Mindscape Companion
+# PsyDx
 
 > AI-assisted mental wellness, psychology learning, clinical support, and therapist ecosystem.
 
-Mindscape Companion is a mental health technology platform combining a DSM-5-TR learning engine for students and clinicians, a wellness toolkit for clients, and an AI assistant with safety guardrails. It does not provide diagnoses or replace licensed clinicians.
+PsyDx is a mental health technology platform combining a DSM-5-TR learning engine for students and clinicians, a wellness toolkit for clients, and an AI assistant with safety guardrails. It does not provide diagnoses or replace licensed clinicians.
 
 ## Pages
 - [Home](/): Product overview and feature highlights
