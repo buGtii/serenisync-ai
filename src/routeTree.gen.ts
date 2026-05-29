@@ -30,12 +30,15 @@ import { Route as AuthenticatedBookingsIndexRouteImport } from './routes/_authen
 import { Route as AuthenticatedWellnessInsightsRouteImport } from './routes/_authenticated/wellness.insights'
 import { Route as AuthenticatedTherapistsTherapistIdRouteImport } from './routes/_authenticated/therapists/$therapistId'
 import { Route as AuthenticatedDsmFavoritesRouteImport } from './routes/_authenticated/dsm/favorites'
+import { Route as AuthenticatedDsmCompareRouteImport } from './routes/_authenticated/dsm/compare'
 import { Route as AuthenticatedDsmAttemptsRouteImport } from './routes/_authenticated/dsm/attempts'
 import { Route as AuthenticatedDsmChapterSlugRouteImport } from './routes/_authenticated/dsm/$chapterSlug'
 import { Route as AuthenticatedBookingsBookingIdRouteImport } from './routes/_authenticated/bookings/$bookingId'
+import { Route as AuthenticatedClinicianAssessmentIndexRouteImport } from './routes/_authenticated/clinician/assessment/index'
 import { Route as AuthenticatedDsmQuizChapterSlugRouteImport } from './routes/_authenticated/dsm/quiz.$chapterSlug'
 import { Route as AuthenticatedDsmDisorderDisorderSlugRouteImport } from './routes/_authenticated/dsm/disorder.$disorderSlug'
 import { Route as AuthenticatedClinicianClientsClientIdRouteImport } from './routes/_authenticated/clinician/clients.$clientId'
+import { Route as AuthenticatedClinicianAssessmentAssessmentIdRouteImport } from './routes/_authenticated/clinician/assessment/$assessmentId'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -150,6 +153,11 @@ const AuthenticatedDsmFavoritesRoute =
     path: '/dsm/favorites',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedDsmCompareRoute = AuthenticatedDsmCompareRouteImport.update({
+  id: '/dsm/compare',
+  path: '/dsm/compare',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedDsmAttemptsRoute =
   AuthenticatedDsmAttemptsRouteImport.update({
     id: '/dsm/attempts',
@@ -166,6 +174,12 @@ const AuthenticatedBookingsBookingIdRoute =
   AuthenticatedBookingsBookingIdRouteImport.update({
     id: '/bookings/$bookingId',
     path: '/bookings/$bookingId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedClinicianAssessmentIndexRoute =
+  AuthenticatedClinicianAssessmentIndexRouteImport.update({
+    id: '/clinician/assessment/',
+    path: '/clinician/assessment/',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedDsmQuizChapterSlugRoute =
@@ -186,6 +200,12 @@ const AuthenticatedClinicianClientsClientIdRoute =
     path: '/clinician/clients/$clientId',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedClinicianAssessmentAssessmentIdRoute =
+  AuthenticatedClinicianAssessmentAssessmentIdRouteImport.update({
+    id: '/clinician/assessment/$assessmentId',
+    path: '/clinician/assessment/$assessmentId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -204,6 +224,7 @@ export interface FileRoutesByFullPath {
   '/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
   '/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
   '/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
+  '/dsm/compare': typeof AuthenticatedDsmCompareRoute
   '/dsm/favorites': typeof AuthenticatedDsmFavoritesRoute
   '/therapists/$therapistId': typeof AuthenticatedTherapistsTherapistIdRoute
   '/wellness/insights': typeof AuthenticatedWellnessInsightsRoute
@@ -211,9 +232,11 @@ export interface FileRoutesByFullPath {
   '/clinician/': typeof AuthenticatedClinicianIndexRoute
   '/dsm/': typeof AuthenticatedDsmIndexRoute
   '/therapists/': typeof AuthenticatedTherapistsIndexRoute
+  '/clinician/assessment/$assessmentId': typeof AuthenticatedClinicianAssessmentAssessmentIdRoute
   '/clinician/clients/$clientId': typeof AuthenticatedClinicianClientsClientIdRoute
   '/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
   '/dsm/quiz/$chapterSlug': typeof AuthenticatedDsmQuizChapterSlugRoute
+  '/clinician/assessment/': typeof AuthenticatedClinicianAssessmentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -232,6 +255,7 @@ export interface FileRoutesByTo {
   '/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
   '/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
   '/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
+  '/dsm/compare': typeof AuthenticatedDsmCompareRoute
   '/dsm/favorites': typeof AuthenticatedDsmFavoritesRoute
   '/therapists/$therapistId': typeof AuthenticatedTherapistsTherapistIdRoute
   '/wellness/insights': typeof AuthenticatedWellnessInsightsRoute
@@ -239,9 +263,11 @@ export interface FileRoutesByTo {
   '/clinician': typeof AuthenticatedClinicianIndexRoute
   '/dsm': typeof AuthenticatedDsmIndexRoute
   '/therapists': typeof AuthenticatedTherapistsIndexRoute
+  '/clinician/assessment/$assessmentId': typeof AuthenticatedClinicianAssessmentAssessmentIdRoute
   '/clinician/clients/$clientId': typeof AuthenticatedClinicianClientsClientIdRoute
   '/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
   '/dsm/quiz/$chapterSlug': typeof AuthenticatedDsmQuizChapterSlugRoute
+  '/clinician/assessment': typeof AuthenticatedClinicianAssessmentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -262,6 +288,7 @@ export interface FileRoutesById {
   '/_authenticated/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
   '/_authenticated/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
   '/_authenticated/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
+  '/_authenticated/dsm/compare': typeof AuthenticatedDsmCompareRoute
   '/_authenticated/dsm/favorites': typeof AuthenticatedDsmFavoritesRoute
   '/_authenticated/therapists/$therapistId': typeof AuthenticatedTherapistsTherapistIdRoute
   '/_authenticated/wellness/insights': typeof AuthenticatedWellnessInsightsRoute
@@ -269,9 +296,11 @@ export interface FileRoutesById {
   '/_authenticated/clinician/': typeof AuthenticatedClinicianIndexRoute
   '/_authenticated/dsm/': typeof AuthenticatedDsmIndexRoute
   '/_authenticated/therapists/': typeof AuthenticatedTherapistsIndexRoute
+  '/_authenticated/clinician/assessment/$assessmentId': typeof AuthenticatedClinicianAssessmentAssessmentIdRoute
   '/_authenticated/clinician/clients/$clientId': typeof AuthenticatedClinicianClientsClientIdRoute
   '/_authenticated/dsm/disorder/$disorderSlug': typeof AuthenticatedDsmDisorderDisorderSlugRoute
   '/_authenticated/dsm/quiz/$chapterSlug': typeof AuthenticatedDsmQuizChapterSlugRoute
+  '/_authenticated/clinician/assessment/': typeof AuthenticatedClinicianAssessmentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -292,6 +321,7 @@ export interface FileRouteTypes {
     | '/bookings/$bookingId'
     | '/dsm/$chapterSlug'
     | '/dsm/attempts'
+    | '/dsm/compare'
     | '/dsm/favorites'
     | '/therapists/$therapistId'
     | '/wellness/insights'
@@ -299,9 +329,11 @@ export interface FileRouteTypes {
     | '/clinician/'
     | '/dsm/'
     | '/therapists/'
+    | '/clinician/assessment/$assessmentId'
     | '/clinician/clients/$clientId'
     | '/dsm/disorder/$disorderSlug'
     | '/dsm/quiz/$chapterSlug'
+    | '/clinician/assessment/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -320,6 +352,7 @@ export interface FileRouteTypes {
     | '/bookings/$bookingId'
     | '/dsm/$chapterSlug'
     | '/dsm/attempts'
+    | '/dsm/compare'
     | '/dsm/favorites'
     | '/therapists/$therapistId'
     | '/wellness/insights'
@@ -327,9 +360,11 @@ export interface FileRouteTypes {
     | '/clinician'
     | '/dsm'
     | '/therapists'
+    | '/clinician/assessment/$assessmentId'
     | '/clinician/clients/$clientId'
     | '/dsm/disorder/$disorderSlug'
     | '/dsm/quiz/$chapterSlug'
+    | '/clinician/assessment'
   id:
     | '__root__'
     | '/'
@@ -349,6 +384,7 @@ export interface FileRouteTypes {
     | '/_authenticated/bookings/$bookingId'
     | '/_authenticated/dsm/$chapterSlug'
     | '/_authenticated/dsm/attempts'
+    | '/_authenticated/dsm/compare'
     | '/_authenticated/dsm/favorites'
     | '/_authenticated/therapists/$therapistId'
     | '/_authenticated/wellness/insights'
@@ -356,9 +392,11 @@ export interface FileRouteTypes {
     | '/_authenticated/clinician/'
     | '/_authenticated/dsm/'
     | '/_authenticated/therapists/'
+    | '/_authenticated/clinician/assessment/$assessmentId'
     | '/_authenticated/clinician/clients/$clientId'
     | '/_authenticated/dsm/disorder/$disorderSlug'
     | '/_authenticated/dsm/quiz/$chapterSlug'
+    | '/_authenticated/clinician/assessment/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -519,6 +557,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDsmFavoritesRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/dsm/compare': {
+      id: '/_authenticated/dsm/compare'
+      path: '/dsm/compare'
+      fullPath: '/dsm/compare'
+      preLoaderRoute: typeof AuthenticatedDsmCompareRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dsm/attempts': {
       id: '/_authenticated/dsm/attempts'
       path: '/dsm/attempts'
@@ -540,6 +585,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedBookingsBookingIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/clinician/assessment/': {
+      id: '/_authenticated/clinician/assessment/'
+      path: '/clinician/assessment'
+      fullPath: '/clinician/assessment/'
+      preLoaderRoute: typeof AuthenticatedClinicianAssessmentIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/dsm/quiz/$chapterSlug': {
       id: '/_authenticated/dsm/quiz/$chapterSlug'
       path: '/dsm/quiz/$chapterSlug'
@@ -559,6 +611,13 @@ declare module '@tanstack/react-router' {
       path: '/clinician/clients/$clientId'
       fullPath: '/clinician/clients/$clientId'
       preLoaderRoute: typeof AuthenticatedClinicianClientsClientIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/clinician/assessment/$assessmentId': {
+      id: '/_authenticated/clinician/assessment/$assessmentId'
+      path: '/clinician/assessment/$assessmentId'
+      fullPath: '/clinician/assessment/$assessmentId'
+      preLoaderRoute: typeof AuthenticatedClinicianAssessmentAssessmentIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
   }
@@ -589,15 +648,18 @@ interface AuthenticatedRouteChildren {
   AuthenticatedBookingsBookingIdRoute: typeof AuthenticatedBookingsBookingIdRoute
   AuthenticatedDsmChapterSlugRoute: typeof AuthenticatedDsmChapterSlugRoute
   AuthenticatedDsmAttemptsRoute: typeof AuthenticatedDsmAttemptsRoute
+  AuthenticatedDsmCompareRoute: typeof AuthenticatedDsmCompareRoute
   AuthenticatedDsmFavoritesRoute: typeof AuthenticatedDsmFavoritesRoute
   AuthenticatedTherapistsTherapistIdRoute: typeof AuthenticatedTherapistsTherapistIdRoute
   AuthenticatedBookingsIndexRoute: typeof AuthenticatedBookingsIndexRoute
   AuthenticatedClinicianIndexRoute: typeof AuthenticatedClinicianIndexRoute
   AuthenticatedDsmIndexRoute: typeof AuthenticatedDsmIndexRoute
   AuthenticatedTherapistsIndexRoute: typeof AuthenticatedTherapistsIndexRoute
+  AuthenticatedClinicianAssessmentAssessmentIdRoute: typeof AuthenticatedClinicianAssessmentAssessmentIdRoute
   AuthenticatedClinicianClientsClientIdRoute: typeof AuthenticatedClinicianClientsClientIdRoute
   AuthenticatedDsmDisorderDisorderSlugRoute: typeof AuthenticatedDsmDisorderDisorderSlugRoute
   AuthenticatedDsmQuizChapterSlugRoute: typeof AuthenticatedDsmQuizChapterSlugRoute
+  AuthenticatedClinicianAssessmentIndexRoute: typeof AuthenticatedClinicianAssessmentIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -612,6 +674,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedBookingsBookingIdRoute: AuthenticatedBookingsBookingIdRoute,
   AuthenticatedDsmChapterSlugRoute: AuthenticatedDsmChapterSlugRoute,
   AuthenticatedDsmAttemptsRoute: AuthenticatedDsmAttemptsRoute,
+  AuthenticatedDsmCompareRoute: AuthenticatedDsmCompareRoute,
   AuthenticatedDsmFavoritesRoute: AuthenticatedDsmFavoritesRoute,
   AuthenticatedTherapistsTherapistIdRoute:
     AuthenticatedTherapistsTherapistIdRoute,
@@ -619,11 +682,15 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedClinicianIndexRoute: AuthenticatedClinicianIndexRoute,
   AuthenticatedDsmIndexRoute: AuthenticatedDsmIndexRoute,
   AuthenticatedTherapistsIndexRoute: AuthenticatedTherapistsIndexRoute,
+  AuthenticatedClinicianAssessmentAssessmentIdRoute:
+    AuthenticatedClinicianAssessmentAssessmentIdRoute,
   AuthenticatedClinicianClientsClientIdRoute:
     AuthenticatedClinicianClientsClientIdRoute,
   AuthenticatedDsmDisorderDisorderSlugRoute:
     AuthenticatedDsmDisorderDisorderSlugRoute,
   AuthenticatedDsmQuizChapterSlugRoute: AuthenticatedDsmQuizChapterSlugRoute,
+  AuthenticatedClinicianAssessmentIndexRoute:
+    AuthenticatedClinicianAssessmentIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

@@ -14,11 +14,12 @@ const disorderQO = (slug: string) => queryOptions({
   queryFn: async () => {
     const { data: d, error } = await supabase.from("dsm_disorders").select("*").eq("slug", slug).single();
     if (error) throw error;
-    const [{ data: criteria }, { data: tools }] = await Promise.all([
+    const [{ data: criteria }, { data: tools }, { data: specifiers }] = await Promise.all([
       supabase.from("dsm_criteria").select("*").eq("disorder_id", d.id).order("ordinal"),
       supabase.from("dsm_assessment_tools").select("*").eq("disorder_id", d.id),
+      supabase.from("dsm_specifiers").select("*").eq("disorder_id", d.id),
     ]);
-    return { disorder: d, criteria: criteria ?? [], tools: tools ?? [] };
+    return { disorder: d, criteria: criteria ?? [], tools: tools ?? [], specifiers: specifiers ?? [] };
   },
 });
 
@@ -129,6 +130,19 @@ function Disorder() {
       {d.cultural_considerations && (
         <Section icon={<Globe2 className="h-5 w-5" />} title="Cultural considerations">
           <p className="text-sm leading-relaxed text-muted-foreground">{d.cultural_considerations}</p>
+        </Section>
+      )}
+
+      {data.specifiers.length > 0 && (
+        <Section icon={<Sparkles className="h-5 w-5" />} title="Specifiers">
+          <ul className="space-y-2">
+            {data.specifiers.map((s) => (
+              <li key={s.id} className="text-sm leading-relaxed">
+                <span className="font-medium">{s.label}.</span>
+                {s.description && <span className="text-muted-foreground"> {s.description}</span>}
+              </li>
+            ))}
+          </ul>
         </Section>
       )}
 
