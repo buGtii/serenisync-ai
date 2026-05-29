@@ -213,6 +213,63 @@ export type Database = {
         }
         Relationships: []
       }
+      clinical_assessments: {
+        Row: {
+          characteristics: Json
+          client_id: string
+          clinician_id: string
+          complaints: Json
+          created_at: string
+          criteria_marks: Json
+          id: string
+          impairment: Json
+          notes: string | null
+          risk_flags: string[]
+          severity: string | null
+          specifiers: Json
+          status: string
+          title: string
+          updated_at: string
+          working_disorder_id: string | null
+        }
+        Insert: {
+          characteristics?: Json
+          client_id: string
+          clinician_id: string
+          complaints?: Json
+          created_at?: string
+          criteria_marks?: Json
+          id?: string
+          impairment?: Json
+          notes?: string | null
+          risk_flags?: string[]
+          severity?: string | null
+          specifiers?: Json
+          status?: string
+          title?: string
+          updated_at?: string
+          working_disorder_id?: string | null
+        }
+        Update: {
+          characteristics?: Json
+          client_id?: string
+          clinician_id?: string
+          complaints?: Json
+          created_at?: string
+          criteria_marks?: Json
+          id?: string
+          impairment?: Json
+          notes?: string | null
+          risk_flags?: string[]
+          severity?: string | null
+          specifiers?: Json
+          status?: string
+          title?: string
+          updated_at?: string
+          working_disorder_id?: string | null
+        }
+        Relationships: []
+      }
       clinician_clients: {
         Row: {
           client_id: string
