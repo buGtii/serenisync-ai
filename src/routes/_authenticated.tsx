@@ -5,7 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/CommandPalette";
 import { NotificationBell } from "@/components/NotificationBell";
-import { Brain, LayoutDashboard, BookOpen, HeartPulse, MessageCircle, LogOut, Settings, Heart, Users, Calendar, UserCog, BarChart3 } from "lucide-react";
+import { MobileTabBar } from "@/components/MobileTabBar";
+import { Brain, LayoutDashboard, BookOpen, HeartPulse, MessageCircle, LogOut, Settings, Heart, Users, Calendar, UserCog, BarChart3, ClipboardList, Compass } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated")({ component: Layout });
 
@@ -39,14 +40,16 @@ function Layout() {
         </Link>
         <div className="px-1 pb-2"><CommandPalette /></div>
         <NavItem to="/dashboard" icon={LayoutDashboard}>Dashboard</NavItem>
-        <NavItem to="/dsm" icon={BookOpen}>DSM Library</NavItem>
+        <NavItem to="/dsm" icon={BookOpen}>DSM-5 Library</NavItem>
+        <NavItem to="/dsm/compare" icon={Compass}>Differential</NavItem>
         <NavItem to="/dsm/favorites" icon={Heart}>Favorites</NavItem>
+        {isClinician && <NavItem to="/clinician/assessment" icon={ClipboardList}>Assessment</NavItem>}
+        {isClinician && <NavItem to="/clinician" icon={UserCog}>Clients</NavItem>}
+        {isClinician && <NavItem to="/chat" icon={MessageCircle}>Case Reasoning</NavItem>}
         <NavItem to="/wellness" icon={HeartPulse}>Wellness</NavItem>
         <NavItem to="/wellness/insights" icon={BarChart3}>Insights</NavItem>
-        <NavItem to="/chat" icon={MessageCircle}>AI Companion</NavItem>
         <NavItem to="/therapists" icon={Users}>Therapists</NavItem>
         <NavItem to="/bookings" icon={Calendar}>Bookings</NavItem>
-        {isClinician && <NavItem to="/clinician" icon={UserCog}>Clinician</NavItem>}
         <div className="mt-auto pt-4 px-2">
           <div className="flex items-center gap-2 mb-2">
             <NotificationBell />
@@ -59,6 +62,7 @@ function Layout() {
         </div>
       </aside>
       <main className="flex-1 min-w-0"><Outlet /></main>
+      <MobileTabBar />
     </div>
   );
 }
