@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { LayoutDashboard, BookOpen, ClipboardList, Compass, Settings } from "lucide-react";
+import { LayoutDashboard, BookOpen, ClipboardList, Compass, HeartPulse, Settings } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 
 /**
