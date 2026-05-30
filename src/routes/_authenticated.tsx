@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/CommandPalette";
 import { NotificationBell } from "@/components/NotificationBell";
 import { MobileTabBar } from "@/components/MobileTabBar";
-import { Brain, LayoutDashboard, BookOpen, HeartPulse, MessageCircle, LogOut, Settings, Heart, Users, Calendar, UserCog, BarChart3, ClipboardList, Compass } from "lucide-react";
+import { Brain, LayoutDashboard, BookOpen, HeartPulse, MessageCircle, LogOut, Settings, Heart, Users, Calendar, UserCog, BarChart3, ClipboardList, Compass, Bell } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated")({ component: Layout });
 
@@ -29,10 +29,10 @@ function Layout() {
 
   if (loading || !user || !checked) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
-  const isClinician = roles.includes("clinician");
+  const isClinician = roles.includes("clinician") || roles.includes("admin");
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex mobile-app-shell">
       <aside className="hidden md:flex w-60 flex-col glass border-r border-border p-4 gap-1">
         <Link to="/" className="flex items-center gap-2 font-serif text-xl px-2 py-3">
           <span className="h-9 w-9 rounded-xl bg-gradient-hero flex items-center justify-center"><Brain className="h-5 w-5 text-primary" /></span>
@@ -61,7 +61,25 @@ function Layout() {
           </Button>
         </div>
       </aside>
-      <main className="flex-1 min-w-0"><Outlet /></main>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="md:hidden sticky top-0 z-30 border-b border-border bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/80" style={{ paddingTop: "env(safe-area-inset-top)" }}>
+          <div className="flex h-14 items-center justify-between gap-3">
+            <Link to="/dashboard" className="flex items-center gap-2 font-serif text-xl">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-hero"><Brain className="h-5 w-5 text-primary" /></span>
+              PsyDx
+            </Link>
+            <div className="flex items-center gap-1.5">
+              <Link to="/notifications" className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-card-foreground shadow-soft" aria-label="Notifications">
+                <Bell className="h-4 w-4" />
+              </Link>
+              <Link to="/settings" className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-card-foreground shadow-soft" aria-label="Settings">
+                <Settings className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </header>
+        <main className="flex-1 min-w-0 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0"><Outlet /></main>
+      </div>
       <MobileTabBar />
     </div>
   );
