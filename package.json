@@ -7,6 +7,10 @@
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "android:sync": "bun run build && cap sync android",
+    "android:open": "bun run android:sync && cap open android",
+    "android:apk": "bun run android:sync && cd android && ./gradlew assembleDebug",
+    "android:apk:windows": "bun run android:sync && cd android && gradlew.bat assembleDebug",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."

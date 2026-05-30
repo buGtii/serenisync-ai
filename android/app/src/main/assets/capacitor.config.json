@@ -1,0 +1,39 @@
+{
+	"appId": "app.psydx.companion",
+	"appName": "PsyDx",
+	"webDir": "dist",
+	"bundledWebRuntime": false,
+	"android": {
+		"allowMixedContent": false,
+		"captureInput": true,
+		"webContentsDebuggingEnabled": false
+	},
+	"server": {
+		"androidScheme": "https",
+		"cleartext": false
+	},
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 1500,
+			"launchAutoHide": true,
+			"backgroundColor": "#0f1320",
+			"androidSplashResourceName": "splash",
+			"androidScaleType": "CENTER_CROP",
+			"showSpinner": false,
+			"splashFullScreen": true,
+			"splashImmersive": true
+		},
+		"StatusBar": {
+			"style": "DARK",
+			"backgroundColor": "#0f1320",
+			"overlaysWebView": false
+		},
+		"Keyboard": {
+			"resize": "body",
+			"resizeOnFullScreen": true
+		},
+		"LocalNotifications": {
+			"iconColor": "#3d4a7a"
+		}
+	}
+}
