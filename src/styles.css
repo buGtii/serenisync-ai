@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Mindscape Companion design system — calm clinical aesthetic */
+/* PsyDx design system — calm clinical mobile-first clinical aesthetic */
 
 @theme inline {
   --font-serif: "Fraunces", "Instrument Serif", ui-serif, Georgia, serif;
@@ -117,20 +117,24 @@
 @layer base {
   * { border-color: var(--color-border); }
   html { font-family: var(--font-sans); }
+  html, body, #root { min-height: 100%; }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     background-image: var(--gradient-calm);
     background-attachment: fixed;
     font-feature-settings: "ss01", "cv11";
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
   }
   h1, h2, h3, .font-serif {
     font-family: var(--font-serif);
-    letter-spacing: -0.018em;
+    letter-spacing: 0;
     font-feature-settings: "ss01", "ss02", "ss03";
     font-optical-sizing: auto;
     font-variation-settings: "SOFT" 50, "WONK" 0;
   }
+  button, a, input, select, textarea { touch-action: manipulation; }
   p, li { line-height: 1.65; }
 }
 
@@ -143,6 +147,8 @@
   .shadow-soft { box-shadow: var(--shadow-soft); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
   .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .mobile-app-shell { min-height: 100dvh; }
+  .mobile-tabbar { box-shadow: 0 -10px 30px color-mix(in oklab, var(--foreground) 8%, transparent); }
 }
 
 @media print {
