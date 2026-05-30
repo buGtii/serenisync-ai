@@ -1,14 +1,15 @@
 # PsyDx — Android (Capacitor) Build Guide
 
-This project uses **Capacitor v8** with the Android platform. The native
-`android/` folder is **intentionally not committed** — it must be generated
-locally before opening Android Studio. This is why you may see:
+This project uses **Capacitor v8** with a committed Android Studio project.
+The native `android/` folder now includes the required Gradle and Capacitor
+files, including `settings.gradle`, `capacitor.settings.gradle`,
+`app/capacitor.build.gradle`, and `app/src/main/assets/capacitor.plugins.json`.
 
 > `capacitor.settings.gradle does not exist`
 > `Capacitor could not find the web assets directory "./dist"`
 
-Both errors mean the local one-time setup below was skipped. Follow the
-exact order and they go away.
+Those errors usually happen when Android Studio is opened before the web app
+has been built and synced. Use the commands below from the project root.
 
 ---
 
@@ -19,35 +20,30 @@ exact order and they go away.
 
 ---
 
-## One-time setup (run in order, from project root)
+## One-command Android setup
 
 ```bash
-# 1. install JS dependencies
 bun install
-
-# 2. PRODUCE THE WEB BUILD (creates dist/index.html — required by cap sync)
-bun run build
-
-# 3. Generate the native Android project (creates ./android with
-#    capacitor.settings.gradle, build.gradle, etc.)
-bunx cap add android
-
-# 4. Copy web assets + native plugins into the Android project
-bunx cap sync android
+bun run android:open
 ```
 
-If step 3 says `android already exists`, that's fine — skip to step 4.
+`android:open` runs `bun run build`, copies the generated web app into
+`android/app/src/main/assets/public`, syncs all native plugins, and opens
+Android Studio.
 
-If step 4 says `web assets directory "./dist" must contain index.html`,
-you skipped step 2. Run `bun run build` and retry.
+For Windows PowerShell, the same command works:
+
+```powershell
+bun install
+bun run android:open
+```
 
 ---
 
 ## Open in Android Studio
 
-```bash
-bunx cap open android
-```
+If Android Studio is already open, close it, run `bun run android:sync`, then
+re-open the `android/` folder in Android Studio.
 
 Then in Android Studio:
 1. Wait for Gradle sync to finish (bottom status bar).
@@ -61,7 +57,7 @@ Then in Android Studio:
 ## Every time you change web code
 
 ```bash
-bun run build && bunx cap sync android
+bun run android:sync
 ```
 
 (No need to re-run `cap add` — that's a one-time step.)
@@ -95,8 +91,9 @@ To change the launcher icon and splash, replace assets under
 
 | Error | Fix |
 |---|---|
-| `capacitor.settings.gradle does not exist` | Run `bunx cap add android` (step 3 above). |
-| `web assets directory "./dist" must contain index.html` | Run `bun run build` first (step 2). |
+| `capacitor.settings.gradle does not exist` | Pull the latest project files, then run `bun install && bun run android:sync`. This file is now committed under `android/`. |
+| `android/app/src/main/assets/capacitor.plugins.json` missing | Run `bun run android:sync`; this regenerates the plugin manifest. |
+| `web assets directory "./dist" must contain index.html` | Run `bun run android:sync` instead of `npx cap sync`; it builds `dist/index.html` first. |
 | Gradle sync fails on JDK version | In Android Studio: **Settings → Build Tools → Gradle → Gradle JDK → 17**. |
 | `SDK location not found` | In Android Studio: **File → Project Structure → SDK Location**, or create `android/local.properties` with `sdk.dir=/path/to/Android/Sdk`. |
 | App opens to white screen | You loaded a stale build — re-run `bun run build && bunx cap sync android`. |
