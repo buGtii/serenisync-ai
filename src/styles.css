@@ -92,26 +92,37 @@
 }
 
 .dark {
-  --background: oklch(0.18 0.025 250);
-  --foreground: oklch(0.96 0.01 95);
-  --card: oklch(0.22 0.03 250);
-  --card-foreground: oklch(0.96 0.01 95);
-  --popover: oklch(0.22 0.03 250);
-  --popover-foreground: oklch(0.96 0.01 95);
-  --primary: oklch(0.88 0.04 295);
-  --primary-foreground: oklch(0.18 0.025 250);
-  --secondary: oklch(0.3 0.03 145);
-  --secondary-foreground: oklch(0.96 0.01 95);
-  --muted: oklch(0.26 0.025 250);
-  --muted-foreground: oklch(0.7 0.02 250);
-  --accent: oklch(0.35 0.05 295);
-  --accent-foreground: oklch(0.96 0.01 95);
+  /* Deep navy psychology palette */
+  --background: oklch(0.18 0.04 260);          /* #0D1B2A deep navy */
+  --foreground: oklch(0.95 0.005 95);          /* #E0E1DD soft text */
+  --card: oklch(0.24 0.04 260);                /* #1B263B card surface */
+  --card-foreground: oklch(0.95 0.005 95);
+  --popover: oklch(0.24 0.04 260);
+  --popover-foreground: oklch(0.95 0.005 95);
+  --primary: oklch(0.65 0.21 285);             /* #6C63FF calm violet */
+  --primary-foreground: oklch(0.98 0.005 95);
+  --secondary: oklch(0.30 0.05 260);
+  --secondary-foreground: oklch(0.95 0.005 95);
+  --muted: oklch(0.26 0.035 260);
+  --muted-foreground: oklch(0.74 0.02 260);    /* #B0B3B8 secondary text */
+  --accent: oklch(0.74 0.14 295);              /* #A78BFA soft purple */
+  --accent-foreground: oklch(0.18 0.04 260);
   --destructive: oklch(0.62 0.2 25);
-  --destructive-foreground: oklch(0.96 0.01 95);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.7 0.04 295);
-  --shadow-soft: 0 1px 2px #00000040, 0 8px 24px #00000060;
+  --destructive-foreground: oklch(0.98 0.005 95);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.65 0.21 285);
+
+  --sage: oklch(0.65 0.21 285);
+  --lavender: oklch(0.74 0.14 295);
+  --navy: oklch(0.24 0.04 260);
+  --amber: oklch(0.82 0.12 75);
+  --mist: oklch(0.30 0.05 260);
+
+  --gradient-hero: linear-gradient(135deg, oklch(0.30 0.08 280) 0%, oklch(0.22 0.06 260) 100%);
+  --gradient-calm: linear-gradient(180deg, oklch(0.18 0.04 260) 0%, oklch(0.22 0.06 275) 100%);
+  --shadow-soft: 0 1px 2px #00000050, 0 12px 32px #00000060;
+  --shadow-glow: 0 24px 70px -20px oklch(0.65 0.21 285 / 0.45);
 }
 
 @layer base {
