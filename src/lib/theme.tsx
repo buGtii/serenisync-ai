@@ -6,24 +6,19 @@ const Ctx = createContext<ThemeCtx>({ theme: "system", resolved: "light", setThe
 
 function resolve(t: Theme): "light" | "dark" {
   if (t !== "system") return t;
-  if (typeof window === "undefined") return "light";
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  // Default to dark for the calm psychology aesthetic
+  return "dark";
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("system");
-  const [resolved, setResolved] = useState<"light" | "dark">("light");
+  const [theme, setThemeState] = useState<Theme>("dark");
+  const [resolved, setResolved] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
     const stored = (typeof window !== "undefined" && localStorage.getItem("theme")) as Theme | null;
-    const t = stored ?? "system";
+    const t = stored ?? "dark";
     setThemeState(t);
     apply(t);
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => { if ((localStorage.getItem("theme") ?? "system") === "system") apply("system"); };
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function apply(t: Theme) {
