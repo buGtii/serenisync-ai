@@ -13,7 +13,9 @@ import type { CapacitorConfig } from "@capacitor/cli";
 const config: CapacitorConfig = {
   appId: "app.psydx.companion",
   appName: "PsyDx",
-  webDir: "dist",
+  // Capacitor packages the static SPA produced by `bun run build:mobile`
+  // (vite.config.mobile.ts), NOT the TanStack Start SSR output in dist/.
+  webDir: "dist-mobile",
   bundledWebRuntime: false,
   android: {
     allowMixedContent: false,
