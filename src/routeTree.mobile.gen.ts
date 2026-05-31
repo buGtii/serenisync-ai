@@ -14,7 +14,6 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as CrisisRouteImport } from './routes/crisis'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedWellnessRouteImport } from './routes/_authenticated/wellness'
 import { Route as AuthenticatedTherapistProfileRouteImport } from './routes/_authenticated/therapist-profile'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
@@ -62,11 +61,6 @@ const AuthenticatedRoute = AuthenticatedRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiChatRoute = ApiChatRouteImport.update({
-  id: '/api/chat',
-  path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedWellnessRoute = AuthenticatedWellnessRouteImport.update({
@@ -220,7 +214,6 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AuthenticatedSettingsRoute
   '/therapist-profile': typeof AuthenticatedTherapistProfileRoute
   '/wellness': typeof AuthenticatedWellnessRouteWithChildren
-  '/api/chat': typeof ApiChatRoute
   '/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
   '/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
   '/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
@@ -251,7 +244,6 @@ export interface FileRoutesByTo {
   '/settings': typeof AuthenticatedSettingsRoute
   '/therapist-profile': typeof AuthenticatedTherapistProfileRoute
   '/wellness': typeof AuthenticatedWellnessRouteWithChildren
-  '/api/chat': typeof ApiChatRoute
   '/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
   '/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
   '/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
@@ -284,7 +276,6 @@ export interface FileRoutesById {
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/therapist-profile': typeof AuthenticatedTherapistProfileRoute
   '/_authenticated/wellness': typeof AuthenticatedWellnessRouteWithChildren
-  '/api/chat': typeof ApiChatRoute
   '/_authenticated/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
   '/_authenticated/dsm/$chapterSlug': typeof AuthenticatedDsmChapterSlugRoute
   '/_authenticated/dsm/attempts': typeof AuthenticatedDsmAttemptsRoute
@@ -317,7 +308,6 @@ export interface FileRouteTypes {
     | '/settings'
     | '/therapist-profile'
     | '/wellness'
-    | '/api/chat'
     | '/bookings/$bookingId'
     | '/dsm/$chapterSlug'
     | '/dsm/attempts'
@@ -348,7 +338,6 @@ export interface FileRouteTypes {
     | '/settings'
     | '/therapist-profile'
     | '/wellness'
-    | '/api/chat'
     | '/bookings/$bookingId'
     | '/dsm/$chapterSlug'
     | '/dsm/attempts'
@@ -380,7 +369,6 @@ export interface FileRouteTypes {
     | '/_authenticated/settings'
     | '/_authenticated/therapist-profile'
     | '/_authenticated/wellness'
-    | '/api/chat'
     | '/_authenticated/bookings/$bookingId'
     | '/_authenticated/dsm/$chapterSlug'
     | '/_authenticated/dsm/attempts'
@@ -405,7 +393,6 @@ export interface RootRouteChildren {
   CrisisRoute: typeof CrisisRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
-  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -443,13 +430,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/chat': {
-      id: '/api/chat'
-      path: '/api/chat'
-      fullPath: '/api/chat'
-      preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/wellness': {
@@ -703,7 +683,6 @@ const rootRouteChildren: RootRouteChildren = {
   CrisisRoute: CrisisRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
-  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

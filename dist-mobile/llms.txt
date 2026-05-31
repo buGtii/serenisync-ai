@@ -1,0 +1,11 @@
+# PsyDx
+
+> AI-assisted mental wellness, psychology learning, clinical support, and therapist ecosystem.
+
+PsyDx is a mental health technology platform combining a DSM-5-TR learning engine for students and clinicians, a wellness toolkit for clients, and an AI assistant with safety guardrails. It does not provide diagnoses or replace licensed clinicians.
+
+## Pages
+- [Home](/): Product overview and feature highlights
+- [Crisis resources](/crisis): International crisis hotlines and immediate support
+- [Login](/login): Sign in
+- [Sign up](/signup): Create an account
