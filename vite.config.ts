@@ -12,4 +12,10 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    server: {
+      // Don't trigger HMR reload loops when the Capacitor mobile bundle is rebuilt.
+      watch: { ignored: ["**/dist-mobile/**", "**/android/**"] },
+    },
+  },
 });
