@@ -16,8 +16,10 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedWellnessRouteImport } from './routes/_authenticated/wellness'
+import { Route as AuthenticatedToolsRouteImport } from './routes/_authenticated/tools'
 import { Route as AuthenticatedTherapistProfileRouteImport } from './routes/_authenticated/therapist-profile'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
@@ -74,6 +76,11 @@ const AuthenticatedWellnessRoute = AuthenticatedWellnessRouteImport.update({
   path: '/wellness',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedToolsRoute = AuthenticatedToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedTherapistProfileRoute =
   AuthenticatedTherapistProfileRouteImport.update({
     id: '/therapist-profile',
@@ -83,6 +90,11 @@ const AuthenticatedTherapistProfileRoute =
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
@@ -217,8 +229,10 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/notifications': typeof AuthenticatedNotificationsRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/profile': typeof AuthenticatedProfileRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/therapist-profile': typeof AuthenticatedTherapistProfileRoute
+  '/tools': typeof AuthenticatedToolsRoute
   '/wellness': typeof AuthenticatedWellnessRouteWithChildren
   '/api/chat': typeof ApiChatRoute
   '/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
@@ -248,8 +262,10 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/notifications': typeof AuthenticatedNotificationsRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/profile': typeof AuthenticatedProfileRoute
   '/settings': typeof AuthenticatedSettingsRoute
   '/therapist-profile': typeof AuthenticatedTherapistProfileRoute
+  '/tools': typeof AuthenticatedToolsRoute
   '/wellness': typeof AuthenticatedWellnessRouteWithChildren
   '/api/chat': typeof ApiChatRoute
   '/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
@@ -281,8 +297,10 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/_authenticated/therapist-profile': typeof AuthenticatedTherapistProfileRoute
+  '/_authenticated/tools': typeof AuthenticatedToolsRoute
   '/_authenticated/wellness': typeof AuthenticatedWellnessRouteWithChildren
   '/api/chat': typeof ApiChatRoute
   '/_authenticated/bookings/$bookingId': typeof AuthenticatedBookingsBookingIdRoute
@@ -314,8 +332,10 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/notifications'
     | '/onboarding'
+    | '/profile'
     | '/settings'
     | '/therapist-profile'
+    | '/tools'
     | '/wellness'
     | '/api/chat'
     | '/bookings/$bookingId'
@@ -345,8 +365,10 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/notifications'
     | '/onboarding'
+    | '/profile'
     | '/settings'
     | '/therapist-profile'
+    | '/tools'
     | '/wellness'
     | '/api/chat'
     | '/bookings/$bookingId'
@@ -377,8 +399,10 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/notifications'
     | '/_authenticated/onboarding'
+    | '/_authenticated/profile'
     | '/_authenticated/settings'
     | '/_authenticated/therapist-profile'
+    | '/_authenticated/tools'
     | '/_authenticated/wellness'
     | '/api/chat'
     | '/_authenticated/bookings/$bookingId'
@@ -459,6 +483,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedWellnessRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/tools': {
+      id: '/_authenticated/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof AuthenticatedToolsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/therapist-profile': {
       id: '/_authenticated/therapist-profile'
       path: '/therapist-profile'
@@ -471,6 +502,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/onboarding': {
@@ -642,8 +680,10 @@ interface AuthenticatedRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
   AuthenticatedTherapistProfileRoute: typeof AuthenticatedTherapistProfileRoute
+  AuthenticatedToolsRoute: typeof AuthenticatedToolsRoute
   AuthenticatedWellnessRoute: typeof AuthenticatedWellnessRouteWithChildren
   AuthenticatedBookingsBookingIdRoute: typeof AuthenticatedBookingsBookingIdRoute
   AuthenticatedDsmChapterSlugRoute: typeof AuthenticatedDsmChapterSlugRoute
@@ -668,8 +708,10 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
   AuthenticatedTherapistProfileRoute: AuthenticatedTherapistProfileRoute,
+  AuthenticatedToolsRoute: AuthenticatedToolsRoute,
   AuthenticatedWellnessRoute: AuthenticatedWellnessRouteWithChildren,
   AuthenticatedBookingsBookingIdRoute: AuthenticatedBookingsBookingIdRoute,
   AuthenticatedDsmChapterSlugRoute: AuthenticatedDsmChapterSlugRoute,
@@ -708,3 +750,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
